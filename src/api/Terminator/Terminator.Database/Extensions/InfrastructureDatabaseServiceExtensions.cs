@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Terminator.Contracts.Database.Repositories;
 using Terminator.Database.Contexts;
+using Terminator.Database.Repositories;
 
 namespace Terminator.Database.Extensions
 {
@@ -10,9 +12,19 @@ namespace Terminator.Database.Extensions
     {
         public static void AddInfrastructureDatabase(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<TerminatorDbContext>(opt =>
-                opt.UseSqlServer(configuration.GetConnectionString("TerminatorDbContextConnection")));
+            AddDbContext(services, configuration);
+            AddServices(services);
+            AddIdentity(services);
+        }
 
+        private static void AddServices(IServiceCollection services)
+        {
+            services.AddTransient<UserManager<IdentityUser>>();
+            services.AddTransient<IUsersRepository, UsersRepository>();
+        }
+
+        private static void AddIdentity(IServiceCollection services)
+        {
             services
                 .AddIdentityCore<IdentityUser>(options =>
                 {
@@ -22,6 +34,12 @@ namespace Terminator.Database.Extensions
                     options.Password.RequireNonAlphanumeric = false;
                 })
                 .AddEntityFrameworkStores<TerminatorDbContext>();
+        }
+
+        private static void AddDbContext(IServiceCollection services, IConfiguration configuration)
+        {
+            services.AddDbContext<TerminatorDbContext>(opt =>
+                opt.UseSqlServer(configuration.GetConnectionString("TerminatorDbContextConnection")));
         }
     }
 }

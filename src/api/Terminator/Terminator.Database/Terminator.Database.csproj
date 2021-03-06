@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\" />
+    <ProjectReference Include="..\Terminator.Contracts\Terminator.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

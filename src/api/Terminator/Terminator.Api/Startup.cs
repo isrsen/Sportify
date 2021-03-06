@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using Terminator.Database;
+using Terminator.Api.Extensions;
 using Terminator.Database.Extensions;
 
 namespace Terminator.Api
@@ -30,7 +28,10 @@ namespace Terminator.Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Terminator.Api", Version = "v1" });
             });
             
+            services.AddApiServices();
             services.AddInfrastructureDatabase(this.Configuration);
+            services.AddConfigurationCustom(this.Configuration);
+            services.AddAuthCustom();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
