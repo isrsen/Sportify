@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace Terminator.Contracts.Services
+namespace Terminator.Contracts.Services.Tokens
 {
     public interface ITokenService
     {

@@ -5,6 +5,7 @@ using System.Security.Claims;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Terminator.Contracts.Api.Settings;
 using Terminator.Contracts.Services;
+using Terminator.Contracts.Services.Tokens;
 
 namespace Terminator.Services.Tokens
 {

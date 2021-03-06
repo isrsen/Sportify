@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Terminator.Contracts.Services
+namespace Terminator.Contracts.Services.Tokens
 {
     public static class TokenOptionsProvider
     {

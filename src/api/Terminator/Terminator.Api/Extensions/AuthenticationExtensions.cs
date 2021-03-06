@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Terminator.Contracts.Api.Settings;
 using Terminator.Contracts.Services;
+using Terminator.Contracts.Services.Tokens;
 
 namespace Terminator.Api.Extensions
 {
